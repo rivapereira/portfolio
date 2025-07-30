@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Riva Pereira</title>
+  <link rel="stylesheet" href="theme.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Quicksand:wght@400;500&family=Barlow:wght@600&display=swap" rel="stylesheet">
+  
+
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- === NAVIGATION BAR === -->
+
+
+    <div class="page-layout">
+
+    <div class="pixel-grid"></div>
+
+<div class="sound-toggle" id="soundToggle">
+  <img src="sound-on.png" alt="Sound" width="24" height="24">
+</div>
+
+     
+    <header class="navbar">
+      <div class="navbar-left">
+        <img src="queen_bee.png" class="bee-icon" />
+       <span class="brand" id="brandName">RIVA</span>
+      </div>
+
+
+
+
+      <div class="nav-right">
+        <nav class="nav-menu">
+          <a href="Wordle.html">Wordle</a>
+          <a href="#projects">Projects</a>
+          <!-- <a href = "#"> Skills</a> -->
+          <a href="https://linktr.ee/riva_pereira">Contact</a>
+        </nav>
+        <div class="sun-toggle">
+          <img src="Sun.png" class="sun-icon" />
+        </div>
+      </div>
+    </header>
+
+    <!-- === HERO SECTION === -->
+    
+    <main class="hero" id="home">
+      <div class="hero-content">
+        <!-- Left Column: Text -->
+        <div class="hero-text">
+          <h1 class="hero-heading">Riva Pereira</h1>
+          <h2 class="hero-subtitle">ML • APP • DATA</h2>
+          <p class="hero-description">
+            I love building things that help people: ML apps, dashboards, tools you can actually use.
+            For me, tech is all about learning, impact, and growing with others as we figure things out together.
+          </p>
+        </div>
+
+        <!-- Right Column: Honeycomb + CV Button -->
+        <div class="hero-right">
+          <div class="honeycomb-wrapper">
+            <img src="Honeycomb.svg" alt="Honeycomb" class="honeycomb-image" />
+          </div>
+            <!-- Updated CV Button -->
+          <a href="Riva_CV.pdf" download="Riva_Pereira_CV.pdf" class="cv-button" title="Download my CV">
+            <img src="download.svg" alt="Download CV" class="cv-icon" />
+            <span>Download</span>
+          </a>
+        </div>
+      </div>
+      </div>
+    </main>
+<!-- === PROJECTS SECTION (Updated Honeycomb with Images) === -->
+<section class="projects-section" id="projects">
+  <h2 class="projects-title">MY PROJECTS</h2>
+
+  <div class="skills-filter">
+    <button class="skill-btn active" data-filter="all">All Projects</button>
+    <button class="skill-btn" data-filter="ml">Machine Learning</button>
+    <button class="skill-btn" data-filter="hack">Hackathons</button>
+    <button class="skill-btn" data-filter="uti">Utilities</button>
+    <button class="skill-btn" data-filter="art">Art Commissions</button>
+  </div>
+
+  <!-- Main Projects Honeycomb -->
+  <div class="honeycomb" id="projects-honeycomb">
+    <!-- Row 1 -->
+    <div class="hex-row">
+      <div class="hex fade-in" data-skills="ml, hack">
+        <div class="hex-content">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="HR Bot">
+          <div class="overlay">
+            <h3>HR Rag Bot</h3>
+            <p>Smart HR chatbot with advanced data protection and employee support capabilities.</p>
+          </div>
+          <a href="https://huggingface.co/spaces/rivapereira123/hr-chatbot"></a>
+        </div>
+      </div>
+
+      <div class="hex fade-in" data-skills="uti">
+        <div class="hex-content">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1115&q=80" alt="Global Dashboard">
+          <div class="overlay">
+            <h3>Karnataka Road Tax Estimator</h3>
+            <p>Vehicle details to get a road tax estimate based on Karnataka RTO rules</p>
+          </div>
+          <a href="https://huggingface.co/spaces/rivapereira123/karnataka-vehicle-road-tax-estimator"></a>
+        </div>
+      </div>
+
+      <div class="hex fade-in" data-skills="ml, hack">
+        <div class="hex-content">
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Career Buddy">
+          <div class="overlay">
+            <h3>Career Buddy</h3>
+            <p>AI-powered career planner with job tracking and skill development recommendations.</p>
+          </div>
+          <a href="#"></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="hex-row staggered">
+      <div class="hex fade-in" data-skills="ml, uti">
+        <div class="hex-content">
+          <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1032&q=80" alt="Elle">
+          <div class="overlay">
+            <h3>Elle Cooking</h3>
+            <p>Transform ingredients into delicious recipes with personalized cooking assistant.</p>
+          </div>
+          <a href="https://huggingface.co/spaces/rivapereira123/cook.py"></a>
+        </div>
+      </div>
+
+      <div class="hex fade-in" data-skills="uti">
+        <div class="hex-content">
+          <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=765&q=80" alt="Face Blur">
+          <div class="overlay">
+            <h3>UOWD WAM Calculator	</h3>
+            <p>A WAM Calculator based on UOWD. A group project between and Abyaz Syed</p>
+          </div>
+          <a href="https://uowd-wam-calculator.vercel.app"></a>
+        </div>
+      </div>
+
+      <div class="hex fade-in" data-skills="ml,hack">
+        <div class="hex-content">
+          <img src="https://images.unsplash.com/photo-1502134249126-9f3755a50d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Hurricanes">
+          <div class="overlay">
+            <h3>First Aid Assisant</h3>
+            <p>Dedicated to Humanitarian Aid.</p>
+          </div>
+          <a href="https://iyemkjgc.manus.space/"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="honeycomb" id="art-honeycomb" style="display: none;">
+    <!-- Art Row 1 -->
+    <div class="hex-row">
+      <div class="hex fade-in" data-skills="art">
+        <div class="hex-content">
+          <img src="pfp.png" alt="Icons">
+          <div class="overlay">
+            <h3>Icons</h3>
+            <p>Custom icons for profiles, characters, or brands. $5</p>
+            <div class="hex-skills"><span class="hex-skill"></span></div>
+          </div>
+          <a href="https://ko-fi.com/c/27c13b0691" target="_blank"></a>
+        </div>
+      </div>
+
+      <div class="hex fade-in" data-skills="art">
+        <div class="hex-content">
+          <img src="emote.png" alt="Emotes">
+          <div class="overlay">
+            <h3>Emotes</h3>
+            <p>Expressive Twitch/Discord emotes. $10</p>
+            <div class="hex-skills"><span class="hex-skill"></span></div>
+          </div>
+          <a href="https://ko-fi.com/c/c197193526" target="_blank"></a>
+        </div>
+      </div>
+
+      <div class="hex fade-in" data-skills="art">
+        <div class="hex-content">
+          <img src="bw.png" alt="Sketch">
+          <div class="overlay">
+            <h3>B/W Sketch</h3>
+            <p>Black and white linework or shaded sketches. $15</p>
+            <div class="hex-skills"><span class="hex-skill"></span></div>
+          </div>
+          <a href="https://ko-fi.com/c/99b8ce26af" target="_blank"></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Art Row 2 (Staggered) -->
+    <div class="hex-row staggered">
+      <div class="hex fade-in" data-skills="art">
+        <div class="hex-content">
+          <img src="render.png" alt="Fully Rendered">
+          <div class="overlay">
+            <h3>Fully Rendered</h3>
+            <p>Polished, colored illustrations with full detail. $30</p>
+            <div class="hex-skills"><span class="hex-skill"></span></div>
+          </div>
+          <a href="https://ko-fi.com/c/bcd77d2443" target="_blank"></a>
+        </div>
+      </div>
+
+      <div class="hex fade-in" data-skills="art">
+        <div class="hex-content">
+          <img src="dynamic.png" alt="Dynamic Poses">
+          <div class="overlay">
+            <h3>Dynamic Poses</h3>
+            <p>Figures in action: expressive, fun, fluid! $40</p>
+            <div class="hex-skills"><span class="hex-skill"></span></div>
+          </div>
+          <a href="https://ko-fi.com/c/75c5c5e895" target="_blank"></a>
+        </div>
+      </div>
+
+      <!-- Optional visual spacer for layout balance -->
+      <div class="hex fade-in" data-skills="not-visible" style="visibility: hidden;">
+        <div class="hex-content"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Add this at the end of your DOMContentLoaded event
+// Initial animation when page loads
+setTimeout(() => {
+  const initialHexes = document.querySelectorAll('.hex.fade-in');
+  initialHexes.forEach((hex, index) => {
+    setTimeout(() => {
+      hex.classList.add('show');
+    }, 100 * index);
+  });
+}, 300);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const skillBtns = document.querySelectorAll('.skill-btn');
+  const projectsHoneycomb = document.getElementById('projects-honeycomb');
+  const artHoneycomb = document.getElementById('art-honeycomb');
+  const allHexes = document.querySelectorAll('.hex.fade-in');
+
+  // Function to animate hexagons
+  function animateHexes(container) {
+    const hexes = container.querySelectorAll('.hex.fade-in');
+    hexes.forEach(hex => {
+      hex.classList.remove('show');
+      // Trigger reflow to reset animation
+      void hex.offsetWidth;
+      hex.classList.add('show');
+    });
+  }
+
+  skillBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      skillBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      if (filter === 'art') {
+        projectsHoneycomb.style.display = 'none';
+        artHoneycomb.style.display = 'block';
+        animateHexes(artHoneycomb); // Animate art hexes
+      } else {
+        projectsHoneycomb.style.display = 'block';
+        artHoneycomb.style.display = 'none';
+        
+        allHexes.forEach(hex => {
+          if (hex.closest('#projects-honeycomb')) {
+            const skillAttr = hex.dataset.skills;
+            const skills = skillAttr ? skillAttr.split(',').map(s => s.trim()) : [];
+            const shouldShow = filter === 'all' ? true : skills.includes(filter);
+
+            if (shouldShow) {
+              hex.style.display = 'flex';
+              hex.classList.remove('show');
+              // Trigger reflow to reset animation
+              void hex.offsetWidth;
+              hex.classList.add('show');
+            } else {
+              hex.style.opacity = '0';
+              hex.style.transform = 'translateY(20px)';
+              hex.classList.remove('show');
+              setTimeout(() => {
+                hex.style.display = 'none';
+              }, 300);
+            }
+          }
+        });
+      }
+    });
+  });
+
+  // Initialize with animation
+  document.querySelector('.skill-btn[data-filter="all"]').click();
+});
+
+</script>
+
+<footer class="footer">2025 Copyrights - Designed by Hiba Anwar</footer>
+
+
+
+<div id="arg-modal" class="arg-modal">
+  <div class="arg-content">
+    <button class="close-modal">&times;</button>
+    <h2 class="pixel-text">🐝 ENTER SECRET CODE</h2>
+    <input type="text" id="arg-code" class="arg-input" placeholder="Enter code...">
+    <button id="arg-submit" class="pixel-btn">SUBMIT</button>
+  </div>
+</div>
+
+<script>
+// Add this to your existing JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+  // Create cursor elements
+  const cursor = document.createElement('div');
+  cursor.classList.add('custom-cursor', 'cursor-default');
+  document.body.appendChild(cursor);
+  
+  // Follow mouse movement
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
+  });
+  
+  // Change to pointer style on hoverable elements
+  const hoverElements = document.querySelectorAll('a, button, .hex, .cv-button, .skill-btn');
+  hoverElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.remove('cursor-default');
+      cursor.classList.add('cursor-pointer');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('cursor-pointer');
+      cursor.classList.add('cursor-default');
+    });
+  });
+  
+  // Click animation
+  document.addEventListener('mousedown', () => {
+    cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+  });
+  document.addEventListener('mouseup', () => {
+    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+  });
+  
+  // Hide cursor on touch devices
+  if ('ontouchstart' in window) {
+    cursor.style.display = 'none';
+  }
+});
+
+
+</script>
+
+<script>
+const bee = document.querySelector('.bee-icon');
+const cvButton = document.querySelector('.cv-button');
+
+// Store original position
+const originalBeeState = {
+  parent: bee.parentNode,
+  nextSibling: bee.nextSibling,
+  styles: {
+    position: bee.style.position,
+    left: bee.style.left,
+    top: bee.style.top,
+    transform: bee.style.transform
+  }
+};
+
+// Sound setup
+const bugSound = new Audio('bug.wav');
+bugSound.volume = 0.3;
+
+bee.addEventListener('click', function() {
+  // Disable during animation
+  bee.style.pointerEvents = 'none';
+  bugSound.currentTime = 0;
+  bugSound.play().catch(e => console.log("Sound blocked"));
+
+  // Get positions
+  const startX = bee.getBoundingClientRect().left + window.scrollX;
+  const startY = bee.getBoundingClientRect().top + window.scrollY;
+  const targetX = cvButton.getBoundingClientRect().left + window.scrollX + cvButton.offsetWidth/2;
+  const targetY = cvButton.getBoundingClientRect().top + window.scrollY + cvButton.offsetHeight/2;
+
+  // Flight path control points
+  const controlPoints = [
+    { x: startX, y: startY }, // Start
+    { x: startX + 100, y: startY - 150 }, // Upward curve
+    { x: targetX + 80, y: targetY - 50 }, // Approach CV
+    { x: targetX + 40, y: targetY + 20 }, // Circle around
+    { x: targetX - 40, y: targetY - 30 }, // Circle other side
+    { x: startX - 50, y: startY + 50 }, // Return curve
+    { x: startX, y: startY } // Home
+  ];
+
+  // Animate along path
+  const duration = 5000;
+  let startTime = null;
+
+  function animateFlight(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Get current position on curve
+    const point = getPointOnCurve(controlPoints, progress);
+    
+    // Calculate next point for facing direction
+    const nextPoint = getPointOnCurve(controlPoints, Math.min(progress + 0.01, 1));
+    const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * (180/Math.PI);
+    
+    // Apply movement
+    bee.style.position = 'fixed';
+    bee.style.left = `${point.x - bee.offsetWidth/2}px`;
+    bee.style.top = `${point.y - bee.offsetHeight/2}px`;
+    bee.style.transform = `rotate(${angle + 90}deg) scale(${1 + Math.sin(progress * 20) * 0.1})`;
+    bee.style.zIndex = '9999';
+    bee.style.transition = 'none';
+
+    if (progress < 1) {
+      requestAnimationFrame(animateFlight);
+    } else {
+      // Return to original position
+      originalBeeState.parent.insertBefore(bee, originalBeeState.nextSibling);
+      bee.style.position = originalBeeState.styles.position;
+      bee.style.left = originalBeeState.styles.left;
+      bee.style.top = originalBeeState.styles.top;
+      bee.style.transform = originalBeeState.styles.transform;
+      bee.style.zIndex = '';
+      bee.style.pointerEvents = 'auto';
+    }
+  }
+
+  // Start animation
+  requestAnimationFrame(animateFlight);
+});
+
+// Cubic bezier curve calculation
+function getPointOnCurve(points, t) {
+  const segments = points.length - 3;
+  const segment = Math.min(Math.floor(t * segments), segments - 1);
+  const segmentT = (t - segment/segments) * segments;
+  
+  const p0 = points[segment];
+  const p1 = points[segment+1];
+  const p2 = points[segment+2];
+  const p3 = points[segment+3];
+  
+  return {
+    x: cubic(segmentT, p0.x, p1.x, p2.x, p3.x),
+    y: cubic(segmentT, p0.y, p1.y, p2.y, p3.y)
+  };
+}
+
+function cubic(t, p0, p1, p2, p3) {
+  return (1-t)**3 * p0 + 3*(1-t)**2 * t * p1 + 3*(1-t)*t**2 * p2 + t**3 * p3;
+}
+
+
+
+// Theme toggle functionality
+const themeToggle = document.querySelector('.sun-toggle');
+const themeIcon = themeToggle.querySelector('.sun-icon');
+const body = document.body;
+const honeycombImg = document.querySelector('.honeycomb-image');
+const cvIcon = document.querySelector('.cv-icon');
+
+// Initialize theme based on current state
+function updateTheme() {
+  const isDark = body.classList.contains('dark-mode');
+  
+  // Update icons
+  themeIcon.src = isDark ? 'moon.png' : 'Sun.png';
+  honeycombImg.src = isDark ? 'DarkHoneycomb.svg' : 'Honeycomb.svg';
+  cvIcon.src = isDark ? 'darkdownload.svg' : 'download.svg';
+  
+  // Update toggle state
+  isDark ? themeToggle.classList.add('dark') : themeToggle.classList.remove('dark');
+}
+
+// Toggle theme
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  updateTheme();
+});
+
+// Initialize on load
+updateTheme();
+
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.projects-section');
+    const hexCount = 15;
+    const hexes = [];
+
+    for (let i = 0; i < hexCount; i++) {
+      const hex = document.createElement('div');
+      hex.classList.add('decoration', 'hex');
+
+      // Store initial position
+      const top = Math.random() * 90;
+      const left = Math.random() * 90;
+
+      hex.style.top = `${top}%`;
+      hex.style.left = `${left}%`;
+
+      container.appendChild(hex);
+
+      // Store for scroll updates
+      hexes.push({ el: hex, top });
+    }
+
+    // Parallax scroll effect
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+
+      hexes.forEach(({ el, top }) => {
+        // Move slower than scroll (1/5th speed)
+        const offset = scrollY * 0.1; // adjust factor for more or less movement
+        el.style.transform = `translateY(${offset}px)`;
+      });
+    });
+  });
+
+
+
+         document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.projects-section');
+    const hexCount = 12;
+
+    for (let i = 0; i < hexCount; i++) {
+      const hex = document.createElement('div');
+      hex.classList.add('floating-hex');
+
+      // Random position: safe padding from edges
+      hex.style.top = `${Math.random() * 90}%`;
+      hex.style.left = `${Math.random() * 90}%`;
+
+      container.appendChild(hex);
+    }
+  });
+        // Add a small delay to ensure all elements are loaded before starting animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add a subtle parallax effect to the decorative elements
+            const decorations = document.querySelectorAll('.floating-hex');
+            
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                
+                decorations.forEach((el, index) => {
+                    const speed = index === 0 ? 0.2 : 0.3;
+                    el.style.transform = `translateY(${scrollPosition * speed}px)`;
+                });
+            });
+            
+            // Add hover effect to hexagons
+            const hexes = document.querySelectorAll('.hex');
+            
+            hexes.forEach(hex => {
+                hex.addEventListener('mouseenter', () => {
+                    hex.style.zIndex = '10';
+                });
+                
+                hex.addEventListener('mouseleave', () => {
+                    hex.style.zIndex = '1';
+                });
+            });
+        });
+  
+
+</script>
+
+
+<script>
+  // === ARG Modal ===
+const brandName = document.getElementById('brandName');
+const argModal = document.getElementById('arg-modal');
+const closeModal = document.querySelector('.close-modal');
+const argSubmit = document.getElementById('arg-submit');
+const argCode = document.getElementById('arg-code');
+
+// Show the modal when logo is clicked
+brandName.addEventListener('click', (e) => {
+  e.preventDefault();
+  argModal.style.display = 'flex';
+});
+
+// Close modal when 'x' is clicked
+closeModal.addEventListener('click', () => {
+  argModal.style.display = 'none';
+});
+
+// Handle submit
+argSubmit.addEventListener('click', () => {
+  if (argCode.value === 'BCAC') {
+    alert('Congratulations! You found the secret-! Send Riva the secret code for the reward');
+  } else {
+    alert('Incorrect code! Try again.');
+  }
+});
+
+
+
+// Sound system setup
+document.addEventListener('DOMContentLoaded', () => {
+  const soundToggle = document.getElementById('soundToggle');
+  let soundEnabled = true;
+  
+  // Load click sound (host this file in your project)
+  const clickSound = new Audio('plick.wav');
+  clickSound.volume = 0.3; // 30% volume
+
+  // Play sound function
+  function playClickSound() {
+    if (soundEnabled) {
+      clickSound.currentTime = 0; // Rewind sound
+      clickSound.play().catch(e => console.log("Browser blocked sound:", e));
+    }
+  }
+
+  // Toggle functionality
+  soundToggle.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    soundToggle.innerHTML = soundEnabled 
+      ? '<img src="sound-on.png" alt="Sound On">' 
+      : '<img src="sound-off.png" alt="Sound Muted">';
+    playClickSound(); // Play sound when toggling
+  });
+
+  // Add click sounds to ALL buttons
+  document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', playClickSound);
+  });
+  
+
+  // Add click sounds to navigation links
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', playClickSound);
+  });
+
+  // Add click sound to hexagons
+  document.querySelectorAll('.hex').forEach(hex => {
+    hex.addEventListener('click', playClickSound);
+  });
+});
+
+</script>
+
+</body>
+</html>

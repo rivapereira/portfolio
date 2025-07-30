@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riva's Wordle CV Puzzle</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- <link rel="stylesheet" href="theme.css"/> -->
+
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    :root {
+      --bg-color: #FFF8E1;
+      --text-color: #2E2E2E;
+      --primary-color: #7F461B;
+      --secondary-color: #FFB800;
+      --border-color: #7F461B;
+      --square-bg: white;
+      --correct-color: #4CAF50;
+      --partial-color: #FFB800;
+      --incorrect-color: #ccc;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #e0e0e0;
+      --primary-color: #FFD700;
+      --secondary-color: #FF8C00;
+      --border-color: #FFD700;
+      --square-bg: #2d2d2d;
+      --correct-color: #4CAF50;
+      --partial-color: #FFB800;
+      --incorrect-color: #666;
+    }
+
+    [data-theme="dark"] .navbar {
+      background: rgba(255, 140, 0, 0.15);
+      border-bottom-color: var(--border-color);
+    }
+
+    [data-theme="dark"] .nav-menu {
+      background: var(--secondary-color);
+      border-color: var(--border-color);
+    }
+
+    [data-theme="dark"] .nav-menu a {
+      color: #1a1a1a;
+    }
+
+    [data-theme="dark"] .nav-menu a:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    [data-theme="dark"] #clue {
+      background: rgba(255, 140, 0, 0.15);
+      border-color: var(--border-color);
+      color: var(--text-color);
+    }
+
+    [data-theme="dark"] #board {
+      background: rgba(255, 140, 0, 0.1);
+      border-color: var(--border-color);
+    }
+
+    [data-theme="dark"] .square {
+      background-color: var(--square-bg);
+      border-color: var(--border-color);
+      color: var(--text-color);
+    }
+
+    [data-theme="dark"] .keyboard-row button {
+      background-color: var(--secondary-color);
+      border-color: var(--border-color);
+      color: #1a1a1a;
+    }
+
+    [data-theme="dark"] .keyboard-row button:hover {
+      box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+    }
+
+    [data-theme="dark"] #code-reveal {
+      background: var(--square-bg);
+      border-color: var(--secondary-color);
+      color: var(--primary-color);
+    }
+
+    [data-theme="dark"] .footer {
+      background: rgba(255, 140, 0, 0.15);
+      border-top-color: var(--border-color);
+      color: var(--text-color);
+    }
+
+    [data-theme="dark"] .arg-content {
+      background: var(--square-bg);
+      border-color: var(--border-color);
+    }
+
+    [data-theme="dark"] .arg-input {
+      background: var(--bg-color);
+      border-color: var(--border-color);
+      color: var(--text-color);
+    }
+
+    [data-theme="dark"] .pixel-btn {
+      background: var(--secondary-color);
+      border-color: var(--border-color);
+      color: #1a1a1a;
+    }
+
+    [data-theme="dark"] .custom-cursor {
+      border-color: var(--primary-color);
+    }
+
+    [data-theme="dark"] .cursor-pointer {
+      background: var(--primary-color);
+    }
+
+    [data-theme="dark"] .pixel-grid {
+      background-image: 
+        linear-gradient(rgba(255, 215, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Courier New', monospace;
+      color: var(--text-color);
+      min-height: 100vh;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .page-layout {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pixel-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.1;
+      background-image: 
+        linear-gradient(rgba(127, 70, 27, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(127, 70, 27, 0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .sound-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      cursor: pointer;
+      padding: 10px;
+      background: var(--secondary-color);
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+
+    .sound-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(255, 184, 0, 0.1);
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .bee-icon {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .bee-icon:hover {
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    .brand {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 30px;
+      background: var(--secondary-color);
+      padding: 12px 24px;
+      border-radius: 25px;
+      border: 2px solid var(--border-color);
+    }
+
+    .nav-menu a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .sun-toggle {
+      cursor: pointer;
+      padding: 10px;
+      background: var(--secondary-color);
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      transition: transform 0.2s ease;
+    }
+
+    .sun-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .sun-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 20px;
+      gap: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    #clue {
+      font-size: 1.2rem;
+      margin: 10px;
+      color: var(--text-color);
+      background: rgba(255, 184, 0, 0.1);
+      padding: 15px 25px;
+      border-radius: 15px;
+      border: 2px solid var(--border-color);
+      max-width: 600px;
+    }
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      gap: 10px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255, 184, 0, 0.05);
+      border-radius: 15px;
+      border: 2px solid var(--border-color);
+    }
+
+    .square {
+      width: 60px;
+      height: 60px;
+      border: 2px solid var(--border-color);
+      font-size: 2rem;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-color);
+      background-color: var(--square-bg);
+      text-transform: uppercase;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .square.correct {
+      background-color: var(--correct-color) !important;
+      border-color: var(--correct-color) !important;
+      color: white !important;
+    }
+
+    .square.partial {
+      background-color: var(--partial-color) !important;
+      border-color: var(--partial-color) !important;
+      color: white !important;
+    }
+
+    .square.incorrect {
+      background-color: var(--incorrect-color) !important;
+      border-color: var(--incorrect-color) !important;
+      color: white !important;
+    }
+
+    /* Shine effect for correct answers */
+    .square.correct::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: rotate(45deg);
+      animation: shine 2s ease-in-out;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+      50% {
+        transform: translateX(0%) translateY(0%) rotate(45deg);
+      }
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    @keyframes slideShine {
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
+    @keyframes sparkleFloat {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.5);
+      }
+    }
+
+    @keyframes fireworkExplode {
+      0% {
+        opacity: 1;
+        transform: scale(0.5);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    #keyboard-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .keyboard-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 5px;
+    }
+
+    .keyboard-row button {
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      border: 2px solid var(--border-color);
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      min-width: 40px;
+    }
+
+    .keyboard-row button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .keyboard-row button:active {
+      transform: translateY(0);
+    }
+
+    .keyboard-row button.wide-button {
+      flex: 1;
+      max-width: 80px;
+    }
+
+    #code-reveal {
+      display: none;
+      margin-top: 30px;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      background: var(--square-bg);
+      border: 3px dashed var(--secondary-color);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 500px;
+      animation: reveal 1s ease-in-out;
+    }
+
+    @keyframes reveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-color);
+      background: rgba(255, 184, 0, 0.1);
+      border-top: 2px solid var(--border-color);
+    }
+
+    #arg-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .arg-content {
+      background: var(--bg-color);
+      padding: 30px;
+      border-radius: 15px;
+      border: 3px solid var(--border-color);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+    .pixel-text {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .arg-input {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--square-bg);
+      color: var(--text-color);
+      font-family: inherit;
+    }
+
+    .pixel-btn {
+      background: var(--secondary-color);
+      color: var(--text-color);
+      border: 2px solid var(--border-color);
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+    }
+
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--primary-color);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-default {
+      background: transparent;
+    }
+
+    .cursor-pointer {
+      background: var(--primary-color);
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .nav-menu {
+        gap: 15px;
+        padding: 8px 16px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      #board {
+        grid-template-columns: repeat(4, 50px);
+        gap: 8px;
+      }
+
+      .square {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+
+      .keyboard-row button {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-layout">
+    <div class="pixel-grid"></div>
+
+    <div class="sound-toggle" id="soundToggle">
+      <img src="sound-on.png" alt="Sound" width="24" height="24">
+    </div>
+
+    <header class="navbar">
+      <div class="navbar-left">
+        <img src="queen_bee.png" class="bee-icon" alt="Queen Bee" />
+        <span class="brand" id="brandName">RIVA</span>
+      </div>
+
+      <div class="nav-right">
+        <nav class="nav-menu">
+          <a href="beehome.html">Home</a>
+          <a href="beehome.html#projects">Projects</a>
+          <a href="https://linktr.ee/riva_pereira">Contact</a>
+        </nav>
+        <div class="sun-toggle" id="themeToggle">
+          <img src="Sun.png" class="sun-icon" alt="Theme Toggle" />
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <h1>🐝 Riva's CV Wordle</h1>
+      <p id="clue">Clue: What is my WAM Calculator for? (Hint: my Uni)</p>
+      <div id="board"></div>
+      <div id="keyboard-container">
+        <div class="keyboard-row">
+          <button data-key="q">q</button>
+          <button data-key="w">w</button>
+          <button data-key="e">e</button>
+          <button data-key="r">r</button>
+          <button data-key="t">t</button>
+          <button data-key="y">y</button>
+          <button data-key="u">u</button>
+          <button data-key="i">i</button>
+          <button data-key="o">o</button>
+          <button data-key="p">p</button>
+        </div>
+        <div class="keyboard-row">
+          <button data-key="a">a</button>
+          <button data-key="s">s</button>
+          <button data-key="d">d</button>
+          <button data-key="f">f</button>
+          <button data-key="g">g</button>
+          <button data-key="h">h</button>
+          <button data-key="j">j</button>
+          <button data-key="k">k</button>
+          <button data-key="l">l</button>
+        </div>
+        <div class="keyboard-row">
+          <button data-key="enter" class="wide-button">Enter</button>
+          <button data-key="z">z</button>
+          <button data-key="x">x</button>
+          <button data-key="c">c</button>
+          <button data-key="v">v</button>
+          <button data-key="b">b</button>
+          <button data-key="n">n</button>
+          <button data-key="m">m</button>
+          <button data-key="del" class="wide-button">Del</button>
+        </div>
+      </div>
+      <div id="code-reveal">🎉 Code Unlocked: <strong>The initials of my LinkedIn Newsletter.</strong></div>
+    </main>
+
+    <footer class="footer">2025 Copyrights - Designed by Hiba Anwar</footer>
+  </div>
+
+  <div id="arg-modal" class="arg-modal">
+    <div class="arg-content">
+      <button class="close-modal">&times;</button>
+      <h2 class="pixel-text">🐝 ENTER SECRET CODE</h2>
+      <input type="text" id="arg-code" class="arg-input" placeholder="Enter code...">
+      <button id="arg-submit" class="pixel-btn">SUBMIT</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const puzzles = [
+        { word: "UOWD", clue: "What is my WAM Calculator for? (Hint: my Uni)" },
+        { word: "ELLE", clue: "App that finds leftovers and gives recipes" },
+        { word: "RIVA", clue: "Whose Portfolio Website is this-?" },
+        { word: "BEES", clue: "What's the theme of this website-???" },
+      ];
+
+      let currentPuzzle = 0;
+      const wordLength = 4;
+      let guessedWords = [[]];
+      let availableSpace = 1;
+      let guessedWordCount = 0;
+
+      const board = document.getElementById("board");
+      const clueText = document.getElementById("clue");
+      const codeReveal = document.getElementById("code-reveal");
+
+      function initializeBoard() {
+        board.innerHTML = "";
+        for (let i = 0; i < 6 * wordLength; i++) {
+          const square = document.createElement("div");
+          square.classList.add("square", "animate__animated");
+          square.setAttribute("id", i + 1);
+          board.appendChild(square);
+        }
+      }
+
+      initializeBoard();
+      clueText.textContent = "Clue: " + puzzles[currentPuzzle].clue;
+
+      function getCurrentWordArr() {
+        return guessedWords[guessedWords.length - 1];
+      }
+
+      function updateGuessedWords(letter) {
+        const currentWordArr = getCurrentWordArr();
+        if (currentWordArr.length < wordLength) {
+          currentWordArr.push(letter);
+          const square = document.getElementById(String(availableSpace));
+          square.textContent = letter;
+          availableSpace++;
+        }
+      }
+
+      function handleDeleteLetter() {
+        const currentWordArr = getCurrentWordArr();
+        if (currentWordArr.length > 0) {
+          currentWordArr.pop();
+          guessedWords[guessedWords.length - 1] = currentWordArr;
+          const lastSquare = document.getElementById(String(availableSpace - 1));
+          lastSquare.textContent = "";
+          availableSpace--;
+        }
+      }
+
+      function getTileColor(letter, index, correctWord) {
+        if (letter === correctWord[index]) return "correct";
+        else if (correctWord.includes(letter)) return "partial";
+        else return "incorrect";
+      }
+
+      function handleSubmitWord() {
+        const currentWordArr = getCurrentWordArr();
+        if (currentWordArr.length !== wordLength) {
+          alert("Word must be " + wordLength + " letters");
+          return;
+        }
+
+        const currentWord = currentWordArr.join("").toUpperCase();
+        const correctWord = puzzles[currentPuzzle].word;
+        const firstLetterId = guessedWordCount * wordLength + 1;
+        const interval = 200;
+
+        currentWordArr.forEach((letter, index) => {
+          setTimeout(() => {
+            const tileClass = getTileColor(letter, index, correctWord);
+            const tile = document.getElementById(firstLetterId + index);
+            tile.classList.add("animate__flipInX", tileClass);
+            
+            // Enhanced shine effect for correct letters
+            if (tileClass === "correct") {
+              setTimeout(() => {
+                tile.style.position = "relative";
+                tile.style.overflow = "hidden";
+                // Add extra sparkle effect
+                tile.classList.add("animate__tada");
+                
+                // Create additional shine elements
+                const extraShine = document.createElement('div');
+                extraShine.style.cssText = `
+                  position: absolute;
+                  top: 0;
+                  left: -100%;
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+                  animation: slideShine 1s ease-in-out 0.5s;
+                  pointer-events: none;
+                `;
+                tile.appendChild(extraShine);
+                
+                // Remove extra elements after animation
+                setTimeout(() => {
+                  if (extraShine.parentNode) {
+                    extraShine.parentNode.removeChild(extraShine);
+                  }
+                }, 1500);
+              }, 300);
+            }
+          }, interval * index);
+        });
+
+        guessedWordCount++;
+        guessedWords.push([]);
+
+        if (currentWord === correctWord) {
+          // Enhanced celebration effect for the entire correct word
+          setTimeout(() => {
+            for (let i = 0; i < wordLength; i++) {
+              const tile = document.getElementById(firstLetterId + i);
+              tile.classList.add("animate__pulse", "animate__infinite");
+              
+              // Add golden glow effect
+              tile.style.boxShadow = "0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6)";
+              
+              // Create floating sparkles
+              setTimeout(() => {
+                createSparkles(tile);
+              }, i * 100);
+            }
+            
+            // Stop the infinite pulse after 2 seconds
+            setTimeout(() => {
+              for (let i = 0; i < wordLength; i++) {
+                const tile = document.getElementById(firstLetterId + i);
+                tile.classList.remove("animate__infinite");
+                tile.style.boxShadow = "";
+              }
+            }, 2000);
+          }, interval * wordLength);
+
+          setTimeout(() => {
+            currentPuzzle++;
+            if (currentPuzzle >= puzzles.length) {
+              codeReveal.style.display = "block";
+              codeReveal.classList.add("animate__bounceIn");
+              clueText.textContent = "🎉 You completed all puzzles! 🎉";
+              clueText.classList.add("animate__rainbow");
+              board.innerHTML = "";
+              
+              // Create celebration fireworks effect
+              createFireworks();
+              return;
+            }
+            guessedWords = [[]];
+            guessedWordCount = 0;
+            availableSpace = 1;
+            clueText.textContent = "Clue: " + puzzles[currentPuzzle].clue;
+            initializeBoard();
+          }, interval * wordLength + 2500);
+        } else if (guessedWordCount === 6) {
+          setTimeout(() => alert("❌ Out of guesses. The word was: " + correctWord), interval * wordLength);
+        }
+      }
+
+      // Function to create sparkle effects
+      function createSparkles(element) {
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.cssText = `
+              position: absolute;
+              top: ${Math.random() * 100}%;
+              left: ${Math.random() * 100}%;
+              font-size: 12px;
+              pointer-events: none;
+              animation: sparkleFloat 1s ease-out forwards;
+              z-index: 10;
+            `;
+            element.appendChild(sparkle);
+            
+            setTimeout(() => {
+              if (sparkle.parentNode) {
+                sparkle.parentNode.removeChild(sparkle);
+              }
+            }, 1000);
+          }, i * 200);
+        }
+      }
+
+      // Function to create fireworks effect
+      function createFireworks() {
+        const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+        
+        for (let i = 0; i < 10; i++) {
+          setTimeout(() => {
+            const firework = document.createElement('div');
+            firework.innerHTML = '🎆';
+            firework.style.cssText = `
+              position: fixed;
+              top: ${Math.random() * 50 + 10}%;
+              left: ${Math.random() * 80 + 10}%;
+              font-size: ${Math.random() * 20 + 20}px;
+              pointer-events: none;
+              animation: fireworkExplode 2s ease-out forwards;
+              z-index: 1000;
+              color: ${colors[Math.floor(Math.random() * colors.length)]};
+            `;
+            document.body.appendChild(firework);
+            
+            setTimeout(() => {
+              if (firework.parentNode) {
+                firework.parentNode.removeChild(firework);
+              }
+            }, 2000);
+          }, i * 300);
+        }
+      }
+
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      
+      themeToggle.addEventListener('click', () => {
+        if (body.getAttribute('data-theme') === 'dark') {
+          body.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        } else {
+          body.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      // Load saved theme
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        body.setAttribute('data-theme', 'dark');
+      }
+
+      document.querySelectorAll(".keyboard-row button").forEach((key) => {
+        key.onclick = () => {
+          const letter = key.getAttribute("data-key");
+          if (letter === "enter") handleSubmitWord();
+          else if (letter === "del") handleDeleteLetter();
+          else updateGuessedWords(letter);
+        };
+      });
+
+      document.addEventListener("keydown", (e) => {
+        const key = e.key.toLowerCase();
+        if (key === "enter") handleSubmitWord();
+        else if (key === "backspace") handleDeleteLetter();
+        else if (/^[a-z]$/.test(key)) updateGuessedWords(key);
+      });
+
+      // Custom cursor
+      const cursor = document.createElement('div');
+      cursor.classList.add('custom-cursor', 'cursor-default');
+      document.body.appendChild(cursor);
+      
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+      });
+      
+      const hoverElements = document.querySelectorAll('a, button, .bee-icon, .sun-toggle, .sound-toggle');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.remove('cursor-default');
+          cursor.classList.add('cursor-pointer');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('cursor-pointer');
+          cursor.classList.add('cursor-default');
+        });
+      });
+      
+      document.addEventListener('mousedown', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+      });
+      document.addEventListener('mouseup', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+      
+      if ('ontouchstart' in window) {
+        cursor.style.display = 'none';
+      }
+
+      // Bee animation (simplified version)
+      const bee = document.querySelector('.bee-icon');
+      bee.addEventListener('click', function() {
+        bee.style.animation = 'none';
+        setTimeout(() => {
+          bee.style.animation = 'bounce 0.5s ease-in-out';
+        }, 10);
+      });
+    });
+  </script>
+</body>
+</html>
+
